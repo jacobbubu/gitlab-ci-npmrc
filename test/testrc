@@ -1,0 +1,3 @@
+@li-mesh:registry=https://gitlab.com/api/v4/packages/npm/
+//gitlab.com/api/v4/packages/npm/:_authToken=${GL_TOKEN}
+//gitlab.com/api/v4/projects/9/packages/npm/:_authToken=${GL_TOKEN}
