@@ -59,7 +59,9 @@ describe('writeNpmrc test', () => {
     const parsed = ini.parse(fs.readFileSync(rcFile, 'utf8'))
     const expectedHostAndPath = `//${process.env.CI_SERVER_HOST}/api/v4/packages/npm/`
     const expectedHostAndPathWithProjectId = `//${process.env.CI_SERVER_HOST}/api/v4/projects/${process.env.CI_PROJECT_ID}/packages/npm/`
-    expect(parsed[`@${process.env.CI_PROJECT_ROOT_NAMESPACE}:registry`]).toBe(expectedHostAndPath)
+    expect(parsed[`@${process.env.CI_PROJECT_ROOT_NAMESPACE}:registry`]).toBe(
+      process.env.CI_SERVER_PROTOCOL + ':' + expectedHostAndPath
+    )
     expect(parsed[expectedHostAndPath + ':_authToken']).toBe(process.env.CI_JOB_TOKEN)
     expect(parsed[expectedHostAndPathWithProjectId + ':_authToken']).toBe(process.env.CI_JOB_TOKEN)
   })
@@ -80,7 +82,9 @@ describe('writeNpmrc test', () => {
     const parsed = ini.parse(fs.readFileSync(rcFile, 'utf8'))
     const expectedHostAndPath = `//${process.env.CI_SERVER_HOST}:${process.env.CI_SERVER_PORT}/api/v4/packages/npm/`
     const expectedHostAndPathWithProjectId = `//${process.env.CI_SERVER_HOST}:${process.env.CI_SERVER_PORT}/api/v4/projects/${process.env.CI_PROJECT_ID}/packages/npm/`
-    expect(parsed[`@${process.env.CI_PROJECT_ROOT_NAMESPACE}:registry`]).toBe(expectedHostAndPath)
+    expect(parsed[`@${process.env.CI_PROJECT_ROOT_NAMESPACE}:registry`]).toBe(
+      process.env.CI_SERVER_PROTOCOL + ':' + expectedHostAndPath
+    )
     expect(parsed[expectedHostAndPath + ':_authToken']).toBe(process.env.CI_JOB_TOKEN)
     expect(parsed[expectedHostAndPathWithProjectId + ':_authToken']).toBe(process.env.CI_JOB_TOKEN)
   })

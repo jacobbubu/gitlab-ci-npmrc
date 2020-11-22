@@ -52,7 +52,7 @@ export function writeNpmrc(rcFile: string, noConsole = false) {
   }
 
   if (!config[registryKey]) {
-    config[registryKey] = hostAndPath
+    config[registryKey] = serverProto + ':' + hostAndPath
   }
 
   if (!config[hostAndPath + ':_authToken']) {
